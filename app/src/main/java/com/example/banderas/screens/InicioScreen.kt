@@ -2,8 +2,10 @@ package com.example.banderas.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,54 +18,22 @@ import com.example.banderas.R
 @Composable
 @Preview
 fun InicioScreen() {
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val(verde, blanco, rojo, escudo) = createRefs()
+    ConstraintLayout(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.White)
+    )
+    {
+        val(circuloRojo) = createRefs()
 
-        val franjaWith = 0.33f
-
-        androidx.compose.foundation.layout.Box(
+        Box(
             modifier = Modifier
-                .constrainAs(verde){
+                .size(150.dp)
+                .background(Color(0xFFBC002D), shape = CircleShape)
+                .constrainAs(circuloRojo) {
                     start.linkTo(parent.start)
+                    end.linkTo(parent.end)
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
-                }
-                .fillMaxSize(franjaWith)
-                .background(Color(0xFF006847))
-        )
-
-        androidx.compose.foundation.layout.Box(
-            modifier = Modifier
-                .constrainAs(blanco){
-                    start.linkTo(verde.end)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                }
-                .fillMaxSize(franjaWith)
-                .background(Color.White)
-        )
-
-        androidx.compose.foundation.layout.Box(
-            modifier = Modifier
-                .constrainAs(rojo){
-                    start.linkTo(blanco.end)
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                }
-                .fillMaxSize(franjaWith)
-                .background(Color(0xFFCE1126))
-        )
-
-        Image(
-            painter = painterResource(id = R.drawable.aguila),
-            contentDescription = "Escudo",
-            modifier = Modifier
-                .size(100.dp)
-                .constrainAs(escudo) {
-                    start.linkTo(blanco.start)
-                    end.linkTo(blanco.end)
-                    top.linkTo(blanco.top)
-                    bottom.linkTo(blanco.bottom)
                 }
         )
     }
