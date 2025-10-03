@@ -1,18 +1,23 @@
 package com.example.banderas.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import com.example.banderas.R
 
 @Composable
 @Preview
 fun InicioScreen() {
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val(verde, blanco, rojo) = createRefs()
+        val(verde, blanco, rojo, escudo) = createRefs()
 
         val franjaWith = 0.33f
 
@@ -49,6 +54,18 @@ fun InicioScreen() {
                 .background(Color(0xFFCE1126))
         )
 
+        Image(
+            painter = painterResource(id = R.drawable.aguila),
+            contentDescription = "Escudo",
+            modifier = Modifier
+                .size(100.dp)
+                .constrainAs(escudo) {
+                    start.linkTo(blanco.start)
+                    end.linkTo(blanco.end)
+                    top.linkTo(blanco.top)
+                    bottom.linkTo(blanco.bottom)
+                }
+        )
     }
 
 }
